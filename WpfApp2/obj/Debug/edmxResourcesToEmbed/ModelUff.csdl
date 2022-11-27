@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UsersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Regions">
+    <Key>
+      <PropertyRef Name="ID_Region" />
+    </Key>
+    <Property Name="ID_Region" Type="Int32" Nullable="false" />
+    <Property Name="Klimat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Relief" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Pochva" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FazOil" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SpawnOil" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KFWater" Type="Int32" />
+    <Property Name="MineralizeWater" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NameRegion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="login_user" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password_user" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Items" Relationship="UsersModel.FK__Items__ID_user__36B12243" FromRole="users" ToRole="Items" />
+  </EntityType>
+  <EntityContainer Name="UsersEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Regions" EntityType="Self.Regions" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <EntitySet Name="Items" EntityType="UsersModel.Items" />
+    <AssociationSet Name="FK__Items__ID_user__36B12243" Association="UsersModel.FK__Items__ID_user__36B12243">
+      <End Role="users" EntitySet="users" />
+      <End Role="Items" EntitySet="Items" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Items">
+    <Key>
+      <PropertyRef Name="ID_item" />
+    </Key>
+    <Property Name="ID_item" Type="Int32" Nullable="false" />
+    <Property Name="color_item" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ID_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="users" Relationship="UsersModel.FK__Items__ID_user__36B12243" FromRole="Items" ToRole="users" />
+  </EntityType>
+  <Association Name="FK__Items__ID_user__36B12243">
+    <End Type="UsersModel.users" Role="users" Multiplicity="1" />
+    <End Type="UsersModel.Items" Role="Items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="Items">
+        <PropertyRef Name="ID_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

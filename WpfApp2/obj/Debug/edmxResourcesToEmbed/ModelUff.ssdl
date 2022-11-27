@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище UsersModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Items">
+    <Key>
+      <PropertyRef Name="ID_item" />
+    </Key>
+    <Property Name="ID_item" Type="int" Nullable="false" />
+    <Property Name="color_item" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ID_user" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Regions">
+    <Key>
+      <PropertyRef Name="ID_Region" />
+    </Key>
+    <Property Name="ID_Region" Type="int" Nullable="false" />
+    <Property Name="Klimat" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Relief" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Pochva" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="FazOil" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="SpawnOil" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="KFWater" Type="int" />
+    <Property Name="MineralizeWater" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="NameRegion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="20" />
+    <Property Name="login_user" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="password_user" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="role" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Items__ID_user__36B12243">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="Items" Type="Self.Items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="Items">
+        <PropertyRef Name="ID_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище UsersModelContainer">
+    <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Regions" EntityType="Self.Regions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Items__ID_user__36B12243" Association="Self.FK__Items__ID_user__36B12243">
+      <End Role="users" EntitySet="users" />
+      <End Role="Items" EntitySet="Items" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,33 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid ItemsSource="{Binding}" x:Name="dg" Margin="302,32,26,112" SelectionChanged="dg_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID_Regiona" Binding="{Binding ID_Region}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Добавление" HorizontalAlignment="Left" Margin="60,359,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="Удаление" HorizontalAlignment="Left" Margin="165,359,0,0" VerticalAlignment="Top" Click="DeleteClick"/>
+        <TextBox x:Name="idtxt" HorizontalAlignment="Left" Margin="101,95,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="logintxt" HorizontalAlignment="Left" Margin="101,131,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="passwordtxt" HorizontalAlignment="Left" Margin="101,168,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="nametxt" HorizontalAlignment="Left" Margin="101,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="roletxt" HorizontalAlignment="Left" Margin="101,249,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="id" HorizontalAlignment="Left" Margin="30,95,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.091,0.081"/>
+        <Label Content="login" HorizontalAlignment="Left" Margin="30,126,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.091,0.081"/>
+        <Label Content="password" HorizontalAlignment="Left" Margin="30,164,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.091,0.081"/>
+        <Label Content="name" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.091,0.081"/>
+        <Label Content="role" HorizontalAlignment="Left" Margin="30,249,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.091,0.081"/>
+        <Button Content="Изменить" HorizontalAlignment="Left" Margin="132,322,0,0" VerticalAlignment="Top" Click="EditClick"/>
+        <ComboBox ItemsSource="{Binding}" x:Name="combooo" HorizontalAlignment="Left" Margin="302,353,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="combooo_SelectionChanged"/>
+        <TextBox x:Name="searchtxt" HorizontalAlignment="Left" Margin="519,375,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Поиск" HorizontalAlignment="Left" Margin="661,373,0,0" VerticalAlignment="Top" Click="SearchClick"/>
+
+    </Grid>
+</Window>

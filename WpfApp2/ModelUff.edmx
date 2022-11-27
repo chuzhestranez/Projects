@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище UsersModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="ID_item" />
+          </Key>
+          <Property Name="ID_item" Type="int" Nullable="false" />
+          <Property Name="color_item" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ID_user" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Regions">
+          <Key>
+            <PropertyRef Name="ID_Region" />
+          </Key>
+          <Property Name="ID_Region" Type="int" Nullable="false" />
+          <Property Name="Klimat" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Relief" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Pochva" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FazOil" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SpawnOil" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="KFWater" Type="int" />
+          <Property Name="MineralizeWater" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NameRegion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" />
+          <Property Name="login_user" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="password_user" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="role" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Items__ID_user__36B12243">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="ID_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище UsersModelContainer">
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Regions" EntityType="Self.Regions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Items__ID_user__36B12243" Association="Self.FK__Items__ID_user__36B12243">
+            <End Role="users" EntitySet="users" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UsersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Regions">
+          <Key>
+            <PropertyRef Name="ID_Region" />
+          </Key>
+          <Property Name="ID_Region" Type="Int32" Nullable="false" />
+          <Property Name="Klimat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Relief" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pochva" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FazOil" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SpawnOil" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KFWater" Type="Int32" />
+          <Property Name="MineralizeWater" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NameRegion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="login_user" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password_user" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Items" Relationship="UsersModel.FK__Items__ID_user__36B12243" FromRole="users" ToRole="Items" />
+        </EntityType>
+        <EntityContainer Name="UsersEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Regions" EntityType="Self.Regions" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="Items" EntityType="UsersModel.Items" />
+          <AssociationSet Name="FK__Items__ID_user__36B12243" Association="UsersModel.FK__Items__ID_user__36B12243">
+            <End Role="users" EntitySet="users" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="ID_item" />
+          </Key>
+          <Property Name="ID_item" Type="Int32" Nullable="false" />
+          <Property Name="color_item" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ID_user" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="UsersModel.FK__Items__ID_user__36B12243" FromRole="Items" ToRole="users" />
+        </EntityType>
+        <Association Name="FK__Items__ID_user__36B12243">
+          <End Type="UsersModel.users" Role="users" Multiplicity="1" />
+          <End Type="UsersModel.Items" Role="Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="ID_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище UsersModelContainer" CdmEntityContainer="UsersEntities">
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="UsersModel.Regions">
+              <MappingFragment StoreEntitySet="Regions">
+                <ScalarProperty Name="ID_Region" ColumnName="ID_Region" />
+                <ScalarProperty Name="Klimat" ColumnName="Klimat" />
+                <ScalarProperty Name="Relief" ColumnName="Relief" />
+                <ScalarProperty Name="Pochva" ColumnName="Pochva" />
+                <ScalarProperty Name="FazOil" ColumnName="FazOil" />
+                <ScalarProperty Name="SpawnOil" ColumnName="SpawnOil" />
+                <ScalarProperty Name="KFWater" ColumnName="KFWater" />
+                <ScalarProperty Name="MineralizeWater" ColumnName="MineralizeWater" />
+                <ScalarProperty Name="NameRegion" ColumnName="NameRegion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="UsersModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="login_user" ColumnName="login_user" />
+                <ScalarProperty Name="password_user" ColumnName="password_user" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="UsersModel.Items">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="ID_user" ColumnName="ID_user" />
+                <ScalarProperty Name="color_item" ColumnName="color_item" />
+                <ScalarProperty Name="ID_item" ColumnName="ID_item" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
